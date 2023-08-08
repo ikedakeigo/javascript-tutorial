@@ -29,8 +29,8 @@ function calcFactory(val, callback) {
     };
 }
 
-const calc = calcFactory(10, console.log);
-calc.plus(5); 
-calc.minus(3); 
+const calc = calcFactory(10,setTimeout.bind(null, console.log, 1000));
+calc.plus(5);
+calc.minus(3);
 calc.multiply(3);
 calc.divide(2);

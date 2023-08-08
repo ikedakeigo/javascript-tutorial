@@ -3,7 +3,7 @@
  * setTimeoutの実行から１秒後にブラウザの
  * コンソールに'hello Tom'と表示されるように
  * 実装してみましょう。
- * 
+ *
  * ※必ずperson.helloメソッドは解答内で使用してください。
  */
 const person = {
@@ -12,6 +12,10 @@ const person = {
     }
 }
 
+// setTimeout(console.log(person.hello()), 1000)
+setTimeout(function (){
+    console.log(person.hello());
+}, 1000)
 // setTimeout(/** ここに追記 */, 1000);
 
 /**
@@ -19,12 +23,14 @@ const person = {
  * setTimeoutの実行から１秒後にブラウザの
  * ダイアログに'hello Tom'と表示されるように
  * 実装してみましょう。
- * 
+ *
  * ※必ずperson.helloメソッドは解答内で使用してください。
  * ※alertは第一引数に渡した文字列を画面のダイアログに表
  * 示する関数です。
  */
-
+// setTimeout(function(){
+//     alert(person.hello());
+// }, 5000)
 
 /**
  * 問題３：
@@ -46,7 +52,7 @@ function after1s(callack) {
 }
 
 // この時点で実行します。
-// after1s(obj.greeting);
+after1s(obj.greeting);
 
 // この後でgreetingを書き換えます。
 obj.greeting = function() {
@@ -60,37 +66,36 @@ obj.greeting = function() {
  * コンソール(console.log)に表示するか、
  * ダイアログ(alert)に出力するかを
  * 使い分けできるようにしてください。
- * 
+ *
  * ※コールバック関数を用いて実装してください。
  */
-function calcFactory(val) {
+function calcFactory(val, callback) {
     return {
         plus: function(target) {
             const newVal = val + target;
-            console.log(`${val} + ${target} = ${newVal}`);
+            callback(`${val} + ${target} = ${newVal}`);
             val = newVal;
         },
         minus: function(target) {
             const newVal = val - target;
-            console.log(`${val} - ${target} = ${newVal}`);
+            callback(`${val} - ${target} = ${newVal}`);
             val = newVal;
         },
         multiply: function(target) {
             const newVal = val * target;
-            console.log(`${val} x ${target} = ${newVal}`);
+            callback(`${val} x ${target} = ${newVal}`);
             val = newVal;
         },
         divide: function(target) {
             const newVal = val / target;
-            console.log(`${val} / ${target} = ${newVal}`);
+            callback(`${val} / ${target} = ${newVal}`);
             val = newVal;
         }
     };
 }
 
-const calc = calcFactory(10);
-calc.plus(5); 
-calc.minus(3); 
+const calc = calcFactory(10, alert);
+calc.plus(5);
+calc.minus(3);
 calc.multiply(3);
 calc.divide(2);
-

@@ -1,7 +1,7 @@
 const person = {
     name: 'Tom',
-    bye: () => {
-        console.log('Bye ' + this.name);
+    bye() {
+        console.log('Bye ' + person.name);
     },
     hello: function (greeting) {
         console.log(greeting + ' ' + this.name);
@@ -12,11 +12,11 @@ const person = {
      * 1秒後に"hello Tom"
      * と出力されるような、メソッドを
      * personオブジェクトに追加してみてください。
-     * 
+     *
      * 以下のように使用するものとします。
-     * `person.hello1s()` 
+     * `person.hello1s()`
      * -> 1秒後に"hello Tom"と出力
-     * 
+     *
      * 3通りの方法で実装してみてください。
      * １．bind
      * ２．アロー関数
@@ -24,7 +24,7 @@ const person = {
      */
 
 
-    
+
 }
 
 /**
@@ -33,7 +33,10 @@ const person = {
  * と出力されるように、以下のコード
  * の記載を変更しましょう。
  */
-setTimeout(person.hello, 1000);
+setTimeout(function(){
+    const hello = person.hello("hello");
+    console.log(hello);
+}, 1000);
 
 /**
  * 問題２：
@@ -41,8 +44,13 @@ setTimeout(person.hello, 1000);
  * と出力されるように、
  * 以下のコードを変更してください。
  */
-alert(person.hello);
 
+// alert(person.hello);
+// alert(person.hello("hello"));
+// alert(function(){
+//     const hello = person.hello("hello");
+//     console.log(hello);
+// })
 /**
  * 問題３：
  * person.byeメソッドを１秒後に実行したかったので
@@ -50,4 +58,25 @@ alert(person.hello);
  * "Bye"しか表示されませんでした。
  * "Bye Tom"とするためにはどうすればよいでしょうか？
  */
+// setTimeout(person.bye.bind(person), 1000);
+// setTimeout(function() {
+//      const Byetom = person.bye.bind(person)
+//      console.log(Byetom);
+// } , 1000);
+
+// const helloTom = person.hello.bind(person);
+
+// function fn(ref) {
+//     ref();
+// }
+
+// fn(helloTom);
+
 setTimeout(person.bye.bind(person), 1000);
+// const Byetom = person.bye.bind(person);
+
+// function fn(ref){
+//     ref();
+// }
+
+// fn(Byetom);
